@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gingabot - Palpites Certeiros de Apostas Esportivas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-blue: #003366; /* Azul escuro */
+            --secondary-green: #00CC66; /* Verde vibrante */
+            --light-gray: #f5f5f5;
+            --text-color: #333;
+            --white: #fff;
+            --red-discount: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--light-gray);
+            border-bottom: 5px solid var(--primary-blue);
+        }
+
+        .hero-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-section p {
+            font-size: 1.3em;
+            color: var(--text-color);
+            margin-bottom: 20px; /* Ajuste para dar espaço ao carrossel */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 720px;
+            margin: 0 auto 20px auto; /* Ajuste a margem inferior para o carrossel */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Image Carousel */
+        .image-carousel-container {
+            overflow: hidden;
+            max-width: 720px; /* Largura máxima igual ao vídeo */
+            margin: 0 auto 30px auto; /* Centraliza e adiciona margem */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: var(--white); /* Garante fundo branco se imagens não cobrirem tudo */
+        }
+
+        .image-carousel {
+            display: flex;
+            width: calc(100% * 6); /* 3 imagens duplicadas para loop contínuo (3 originais + 3 cópias) */
+            animation: scroll-carousel 15s linear infinite; /* Velocidade do loop */
+        }
+
+        .carousel-image {
+            width: calc(100% / 6); /* Cada imagem ocupa 1/6 do total (100% / (3+3)) */
+            flex-shrink: 0; /* Impede que as imagens encolham */
+            height: auto; /* Mantém a proporção */
+            display: block; /* Remove espaços extras */
+            object-fit: cover; /* Garante que a imagem cubra o espaço, cortando se necessário */
+        }
+
+        @keyframes scroll-carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); /* Move a metade do total (3 imagens originais) */ }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-green);
+            color: var(--white);
+            padding: 18px 40px;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0, 204, 102, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #00b359;
+            transform: translateY(-3px);
+        }
+
+        .cta-button i {
+            margin-right: 10px;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .benefit-card {
+            background-color: var(--light-gray);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 3em;
+            color: var(--secondary-green);
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4em;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            font-size: 1em;
+            color: var(--text-color);
+        }
+
+        /* Before & After Section */
+        .transformation-section {
+            padding: 80px 20px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .transformation-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+
+        .transformation-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .transformation-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 35px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .transformation-card.before {
+            border: 2px solid var(--red-discount);
+        }
+
+        .transformation-card.after {
+            border: 2px solid var(--secondary-green);
+        }
+
+        .transformation-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .transformation-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--white);
+        }
+
+        .transformation-card .icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .transformation-card.before .icon {
+            color: var(--red-discount);
+        }
+
+        .transformation-card.after .icon {
+            color: var(--secondary-green);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 20px;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .testimonials-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--secondary-green);
+        }
+
+        .testimonial-card p {
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1em;
+        }
+
+        /* Offer Section */
+        .offer-section {
+            padding: 80px 20px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .offer-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .price-highlight {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            font-size: 0.6em;
+            opacity: 0.8;
+            margin-right: 15px;
+        }
+
+        .new-price {
+            color: var(--secondary-green);
+        }
+
+        .scarcity-warning {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #FFD700; /* Gold for warning */
+            margin-top: 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 60px 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .guarantee-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+        }
+
+        .guarantee-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .guarantee-item {
+            background-color: var(--light-gray);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .guarantee-item i {
+            font-size: 2.2em;
+            color: var(--secondary-green);
+            margin-right: 20px;
+        }
+
+        .guarantee-item p {
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        .footer-cta {
+            background-color: var(--primary-blue);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 5px solid var(--secondary-green);
+        }
+
+        .footer-cta h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-section h1 {
+                font-size: 2.4em;
+            }
+            .hero-section p {
+                font-size: 1.1em;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.3em;
+            }
+            .benefits-section h2, .transformation-section h2, .testimonials-section h2, .offer-section h2, .guarantee-section h2, .footer-cta h2 {
+                font-size: 2em;
+            }
+            .price-highlight {
+                font-size: 3em;
+            }
+            .image-carousel-container {
+                max-width: 95%; /* Adapta a largura em telas menores */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 15px;
+            }
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .hero-section p {
+                font-size: 1em;
+            }
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .transformation-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .transformation-card {
+                max-width: 90%;
+            }
+            .offer-section h2 {
+                font-size: 2.2em;
+            }
+            .price-highlight {
+                font-size: 2.8em;
+            }
+            .scarcity-warning {
+                font-size: 1.1em;
+            }
+            .guarantee-item {
+                max-width: 90%;
+            }
+            .footer-cta h2 {
+                font-size: 1.8em;
+            }
+            .carousel-image {
+                width: calc(100% / 3); /* Exibe 1 imagem por vez, com 3 originais e 3 cópias */
+            }
+            @keyframes scroll-carousel {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-100%); /* Move o equivalente a 3 imagens */ }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
+            .hero-section p {
+                font-size: 0.9em;
+            }
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .benefits-section h2, .transformation-section h2, .testimonials-section h2, .offer-section h2, .guarantee-section h2, .footer-cta h2 {
+                font-size: 1.8em;
+            }
+            .benefit-card h3 {
+                font-size: 1.2em;
+            }
+            .benefit-card p {
+                font-size: 0.9em;
+            }
+            .transformation-card h3 {
+                font-size: 1.6em;
+            }
+            .transformation-card p {
+                font-size: 1em;
+            }
+            .testimonial-card p {
+                font-size: 1em;
+            }
+            .price-highlight {
+                font-size: 2.5em;
+            }
+            .scarcity-warning {
+                font-size: 1em;
+            }
+            .guarantee-item p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Descubra o Segredo dos Apostadores que Mais Lucram em Angola!</h1>
+            <p>Receba todos os dias os melhores palpites direto no seu Telegram com o poder do Gingabot.
+Acerte mais. Lucro maior. Menos esforço.</p>
+
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/EOeqxU_w9yE?autoplay=1&mute=1&controls=0&loop=1&playlist=EOeqxU_w9yE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <a href="https://pay.kuenha.com/acc1f851-ea6d-4756-9b64-3f4ee18027a0" class="cta-button">
+                <i class="fa-solid fa-fire-flame-curved"></i> Quero lucrar agora!
+            </a>
+            <div class="image-carousel-container">
+                <div class="image-carousel">
+                    <img src="./IMAGENS/PROVA01.jpg" alt="Tela do Gingabot no Telegram 1" class="carousel-image">
+                    <img src="./IMAGENS/prova02.png" alt="Captura de tela de lucros Gingabot 2" class="carousel-image">
+                    <img src="./IMAGENS/prova03.png" alt="Gráfico de análises estatísticas 3" class="carousel-image">
+                    
+                    <img src="./IMAGENS/PROVA01.jpg" alt="Tela do Gingabot no Telegram 1" class="carousel-image">
+                    <img src="./IMAGENS/prova02.png" alt="Captura de tela de lucros Gingabot 2" class="carousel-image">
+                    <img src="./IMAGENS/prova03.png" alt="Gráfico de análises estatísticas 3" class="carousel-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="benefits-section">
+        <div class="container">
+            <h2>O que você ganha com o Gingabot?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h3>Palpites Diários de Alta Taxa de Acerto</h3>
+                    <p>Receba sinais otimizados para maximizar suas chances de lucro, direto no seu Telefone.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>Análises Estatísticas Reais</h3>
+                    <p>Nossos palpites são baseados em dados sólidos, inteligência artificial e anos de experiência no mercado.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    <h3>Economize Tempo e Aumente Seus Lucros</h3>
+                    <p>Pare de perder horas analisando jogos. Deixe o Gingabot fazer o trabalho pesado por você e veja seus resultados crescerem.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Acesso a Grupo VIP Exclusivo</h3>
+                    <p>Junte-se a uma comunidade de vencedores e receba sinais adicionais, estratégias e suporte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="transformation-section">
+        <div class="container">
+            <h2>Sua jornada de Perdedor a Vencedor começa aqui!</h2>
+            <div class="transformation-cards">
+                <div class="transformation-card before">
+                    <h3><i class="fa-solid fa-circle-xmark icon"></i> ANTES</h3>
+                    <p>"Eu me sentia frustrado, jogando dinheiro fora com apostas aleatórias e sem estratégia. Era um ciclo vicioso de perdas e decepção. Perdia dinheiro toda semana com apostas aleatórias e não via retorno algum."</p>
+                </div>
+                <div class="transformation-card after">
+                    <h3><i class="fa-solid fa-circle-check icon"></i> DEPOIS</h3>
+                    <p>"Com o Gingabot, tudo mudou! Comecei a seguir os palpites certeiros e fechei o mês positivo pela primeira vez. Agora tenho confiança e controlo minhas apostas, finalmente lucrando de verdade!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>O que nossos usuários dizem sobre o Gingabot</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="https://via.placeholder.com/90/00CC66/FFFFFF?text=J" alt="Avatar de João M.">
+                    <p>“Nunca imaginei que um bot poderia me ajudar tanto. Hoje eu lucro quase toda semana e saí do vermelho!”</p>
+                    <span class="author">— João M., Luanda</span>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://via.placeholder.com/90/00CC66/FFFFFF?text=A" alt="Avatar de Ana C.">
+                    <p>“Simplesmente incrível! Os sinais são super precisos e o suporte é excelente. Recomendo a todos!”</p>
+                    <span class="author">— Ana C., Benguela</span>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://via.placeholder.com/90/00CC66/FFFFFF?text=P" alt="Avatar de Pedro S.">
+                    <p>“Minha banca multiplicou em um mês. O Gingabot é um divisor de águas para quem quer ser consistente nas apostas.”</p>
+                    <span class="author">— Pedro S., Huambo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="offer" class="offer-section">
+        <div class="container">
+            <h2>Oferta Especial por Tempo Limitado!</h2>
+            <div class="price-highlight">
+                <span class="old-price">Kz 8.000</span> por apenas <span class="new-price">Kz 3.000/Ano</span>
+            </div>
+            <p class="scarcity-warning"><i class="fa-solid fa-triangle-exclamation"></i>ATENÇÃO: Após 30 vagas, as inscrições serão encerradas temporariamente!</p>
+            <a href="https://pay.kuenha.com/acc1f851-ea6d-4756-9b64-3f4ee18027a0" class="cta-button" style="margin-top: 40px;">
+                <i class="fa-solid fa-bolt"></i> Garanta a sua vaga AGORA!
+            </a>
+        </div>
+    </section>
+
+    ---
+
+    <section class="guarantee-section">
+        <div class="container">
+            <h2>Sua Satisfação é Nossa Prioridade!</h2>
+            <div class="guarantee-items">
+                <div class="guarantee-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <p>Teste por 7 dias. Não gostou? Reembolso garantido!</p>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fa-solid fa-lock"></i>
+                    <p>Pagamento 100% seguro e seus dados protegidos.</p>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <p>Suporte dedicado via WhatsApp para todas as suas dúvidas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <footer id="footer" class="footer-cta">
+        <div class="container">
+            <h2>⏰ O tempo está correndo. Clique abaixo e comece a receber seus palpites ainda hoje.</h2>
+            <a href="https://pay.kuenha.com/acc1f851-ea6d-4756-9b64-3f4ee18027a0" class="cta-button">
+                <i class="fa-solid fa-angles-right"></i> Quero meu acesso ao Gingabot agora!
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
